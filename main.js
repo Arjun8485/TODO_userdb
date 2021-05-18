@@ -30,8 +30,6 @@ function getUserName() {
     var userName = prompt("Please enter your name", "");
     return userName;
 }
-
-getUserName();
 const user = getUserName();
 restrieveItems();
 
