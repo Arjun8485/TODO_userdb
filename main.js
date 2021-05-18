@@ -31,6 +31,7 @@ function getUserName() {
     return userName;
 }
 
+getUserName();
 const user = getUserName();
 restrieveItems();
 
