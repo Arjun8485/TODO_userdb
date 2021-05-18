@@ -28,9 +28,6 @@ const input = document.getElementById("userInput");
 
 function getUserName() {
     var userName = prompt("Please enter your name", "");
-    while (userName === "") {
-      prompt("Please enter your name", "");
-    }
     return userName;
 }
 function getUserName()
