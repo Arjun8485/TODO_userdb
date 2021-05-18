@@ -73,7 +73,7 @@ function returnRetrievedItems(doc) {
 //Deleting items locally and firebase 
 function deleteItem(elementToBeDeleted) {
     let documentsID = elementToBeDeleted.parentElement.getAttribute('data-id')
-    db.collection('tasks').doc(documentsID).delete();
+    db.collection('user').doc(documentsID).delete();
     elementToBeDeleted.parentElement.remove();
     itemLeft() 
 }
