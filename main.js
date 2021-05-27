@@ -22,34 +22,42 @@ function hideCross(selectedCross) {
     var cross = selectedCross.lastElementChild;
     cross.style.display = "none";
 }
+
 //functions for creating new tasks
 const container = document.getElementById("main-container");
 const input = document.getElementById("userInput");
 
-function getUserName() {
-    var userName = prompt("Please enter your name", "");
-    return userName;
-}
-const user = getUserName();
-restrieveItems();
-
 function newTaskEntered() {
     if (input.value !== "") {
         storeData();
+        returnTask();
     }
 }
 function storeData() {
-    db.collection(user).add({
+    db.collection("tasks").add({
         taskName: input.value
     });
-    restrieveItems();
-    container.innerHTML = "";
 }
 
 
 // Retrieving and returning firebase data
+function returnTask() {
+    container.innerHTML += `    
+    <div class="flex items-center item" onmouseover="showCross(this)" onmouseout="hideCross(this)" data-id="${input.value}">
+    <div class="w-6 h-6 m-4 rounded-full border-black border-solid border-2 hover:border-green-300" onclick="taskCompleted(this)">
+      <img src="images/icon-check.svg" alt="" class="mx-auto my-1.5">
+    </div>
+    <h2 class="text-green-400">${input.value}</h2>
+    <img src="images/icon-cross.svg" alt="" class="ml-auto mr-6 hidden"  onclick="deleteItem(this)">
+  </div>
+  `;
+    input.value = "";
+    itemLeft();
+}
+
+
 function restrieveItems(){
-    db.collection(user).get().then((snapshot) => {
+    db.collection('tasks').get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             returnRetrievedItems(doc)
         })
@@ -73,7 +81,7 @@ function returnRetrievedItems(doc) {
 //Deleting items locally and firebase 
 function deleteItem(elementToBeDeleted) {
     let documentsID = elementToBeDeleted.parentElement.getAttribute('data-id')
-    db.collection(user).doc(documentsID).delete();
+    db.collection('tasks').doc(documentsID).delete();
     elementToBeDeleted.parentElement.remove();
     itemLeft() 
 }
