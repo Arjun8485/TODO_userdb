@@ -5,7 +5,7 @@
   "short_name": "TODO",
   "scope": "/",
   "display": "standalone",
-  "start_url": "https://arjun8485.github.io/Todo-withdb/",
+  "start_url": "https://arjun8485.github.io/TODO_userdb/",
   "background_color": "rgba(110, 231, 183)",
   "theme_color": "white",
   "description": "Todo app",
