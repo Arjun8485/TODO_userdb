@@ -16,7 +16,7 @@
   </style>
 </head>
 
-<body class="bg-green-200" onload="getUserName()">
+<body class="bg-green-200">
   <div class="lg:w-6/12 md:8/12 w-10/12 m-auto relative">
 
     <div class="flex justify-between mt-8">
@@ -24,19 +24,29 @@
       <img src="images/icon-moon.svg" alt="" class="w-10 h-10 mt-2">
     </div>
 
+    <div class="flex flex-col my-10 bg-white items-center rounded-lg shadow-lg">
+      <h2 class="w-12/12 my-2 text-green-400" style="font-size: 24px;">List name:</h2>
+        <input class="my-4 border-b-2 border-green-300 text-green-400 mx-auto text-center p-2" type="text" id="collectionName" oninput="listNameEntered()">
+        <div>
+          <button onclick="listNameEntered()" class="py-2 px-20 my-4 rounded-2xl bg-green-200 text-white hover:bg-green-300">Open List</button>
+        </div>
+    </div>
+
     <div class="flex my-10 bg-white items-center rounded-lg shadow-lg">
       <div class="w-6 h-6 m-4 rounded-full border-black border-solid border-2 hover:border-green-300">
         <img src="images/icon-check.svg" alt="" class="mx-auto my-1.5">
       </div>
+      <form action="" class="w-full" onsubmit="return false;">
       <input class="my-4 w-full border-0 text-green-400" type="text" placeholder="Create a new Todo..." id="userInput" >
-      <button class="ml-auto mr-6 bg-green-200 px-3 rounded-2xl text-white px-5 py-1 hover:bg-green-300" onclick="newTaskEntered()">Enter</button>
+      <input type="submit" value="submit" class="hidden" onclick="newTaskEntered()">
+      </form>
     </div>
   </div>
 
   <div class="lg:w-6/12 md:8/12 w-10/12 m-auto divide-y divide-gray-300 flex flex-col bg-white relative rounded-t-lg shadow-lg" id="main-container">
-
   </div>
 
+  
   <div class="lg:w-6/12 md:8/12 w-10/12 m-auto border-t border-gray-300 flex flex-row bg-white relative rounded-b-lg shadow-lg justify-center">
 
       <div class="md:mx-2 hover:text-gray-400 text-center py-4 text-blue-400" id="itemsLeft" onclick="itemLeft()">Tasks left: 0</div>
