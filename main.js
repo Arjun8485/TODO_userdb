@@ -43,7 +43,6 @@ function storeData() {
     db.collection(collectionName.value).add({
         taskName: input.value
     });
-    console.log(input.value)
 }
 
 // Retrieving and returning firebase data
@@ -69,6 +68,7 @@ function retrieveItems(){
         })
     })
    console.log(collectionName.value)
+   itemLeft();
 }
 function returnRetrievedItems(doc) {
     tasksFromDB = doc.data().taskName;
