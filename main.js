@@ -26,6 +26,12 @@ function hideCross(selectedCross) {
 //functions for creating new tasks
 const container = document.getElementById("main-container");
 const input = document.getElementById("userInput");
+const collectionName = document.getElementById("collectionName");
+
+function listNameEntered() {
+    container.innerHTML = "";
+    retrieveItems()
+}
 
 function newTaskEntered() {
     if (input.value !== "") {
@@ -34,11 +40,11 @@ function newTaskEntered() {
     }
 }
 function storeData() {
-    db.collection("tasks").add({
+    db.collection(collectionName.value).add({
         taskName: input.value
     });
+    console.log(input.value)
 }
-
 
 // Retrieving and returning firebase data
 function returnTask() {
@@ -56,12 +62,13 @@ function returnTask() {
 }
 
 
-function restrieveItems(){
-    db.collection('tasks').get().then((snapshot) => {
+function retrieveItems(){
+    db.collection(collectionName.value).get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             returnRetrievedItems(doc)
         })
     })
+   console.log(collectionName.value)
 }
 function returnRetrievedItems(doc) {
     tasksFromDB = doc.data().taskName;
@@ -81,7 +88,7 @@ function returnRetrievedItems(doc) {
 //Deleting items locally and firebase 
 function deleteItem(elementToBeDeleted) {
     let documentsID = elementToBeDeleted.parentElement.getAttribute('data-id')
-    db.collection('tasks').doc(documentsID).delete();
+    db.collection(collectionName.value).doc(documentsID).delete();
     elementToBeDeleted.parentElement.remove();
     itemLeft() 
 }
